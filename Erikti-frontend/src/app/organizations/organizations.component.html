@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="filter-container">
+        <!-- Add filtration options here -->
+        <h2>Filter Options</h2>
+        <div class="container">
+          <label for="region">Region:</label>
+          <select id="region" [(ngModel)]="selectedCity" name="selectedCity" class="custom-select" (change)="handleChange('trigger')">
+            <option value="option1" [value]="city" *ngFor="let city of cities" [attr.selected]="selectedCity"> {{ city }}</option>
+          </select>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="organizations-list">
+        <h1>Organizations</h1>
+        <div *ngFor="let organization of organizations | paginate: {itemsPerPage: 3, currentPage: p}" class="organization">
+          <h2>{{ organization.name }}</h2>
+          <p><strong>Address:</strong> {{ organization.address }}</p>
+          <p><strong>Phone:</strong> {{ organization.phone }}</p>
+          <p><strong>Email:</strong> {{ organization.email }}</p>
+          <p><strong>Description:</strong> {{ organization.description }}</p>
+          <p><strong>City:</strong> {{ organization.city }}</p>
+          <button routerLink="organization-detail/{{organization.organizationId}}" class="btn btn-info"> More </button>
+
+          <!--          <p class="owner"><strong>Owner:</strong> {{ organization.owner }}</p>-->
+        </div>
+        <div class="flex justify-content-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

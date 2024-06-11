@@ -1,0 +1,869 @@
+<br><br>
+
+<div class="container" *ngIf="role === 'VOLUNTEER'">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card mb-4">
+<!--          <img class="card-img-top" src="" alt="Profile Photo">-->
+          <div class="card-body">
+<!--            <div class="upload-avatar">-->
+<!--              <div class="avatar-container">-->
+<!--                <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar" alt="User Avatar"/>-->
+<!--                <div *ngIf="!avatarUrl" class="avatar-placeholder">-->
+<!--                  <span>No Avatar</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <input type="file" (change)="onFileSelected($event)" />-->
+<!--              <button (click)="onUpload()">Upload Avatar</button>-->
+<!--            </div>-->
+            <h2 class="card-title">User Details</h2>
+            <!-- User Details -->
+            <div class="user-details">
+              <p>Username : {{username}} </p>
+              <p>Role : {{role}} </p>
+<!--              <p>Rating : {{ this.volunteerDetails.rating }}</p>-->
+
+              <!-- Add user details here -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+<!--          <p-tree class="w-full md:w-30rem" [value]="userTreeNode">-->
+<!--            <ng-template let-node pTemplate="default">-->
+<!--              <span *ngIf="node.data.type === 'profile'">-->
+<!--                <button (click)="changeVolunteerLayout(node.data.type)"></button>-->
+<!--              </span>-->
+
+<!--              <span *ngIf="node.data.type === 'settings'">-->
+<!--                <button (click)="changeVolunteerLayout(node.data.type)">{{ node.label }}</button>-->
+<!--            </span>-->
+<!--              <span *ngIf="node.data.type === 'eventList'">-->
+<!--                <button (click)="changeVolunteerLayout(node.data.type)">{{ node.label }}</button>-->
+<!--            </span>-->
+<!--              <span *ngIf="node.data.type === 'rate'">-->
+<!--             <button (click)="changeVolunteerLayout(node.data.type)">{{ node.label }}</button>-->
+<!--             </span>-->
+<!--            </ng-template>-->
+<!--          </p-tree>-->
+
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title" > <button (click)="changeVolunteerLayout('profile')" >My profile </button></h2>
+          <!-- Volunteer Package Info -->
+          <div class="volunteer-package-info">
+            <!-- Add information about volunteer package here -->
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeVolunteerLayout('settings')">Settings </button></h2>
+          <!-- Settings -->
+          <div class="settings">
+            <!-- Add your settings options here -->
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeVolunteerLayout('volunteerEvents')"> My Events </button></h2>
+          <!-- My Events -->
+          <div class="my-events">
+            <!-- Add your events list here -->
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeVolunteerLayout('rate')" >Rate Organizations</button></h2>
+          <!-- Volunteer Package Info -->
+          <div class="volunteer-package-info">
+            <!-- Add information about volunteer package here -->
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div *ngIf="myProfile" class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">My Profile</h2>
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+              <input id="firstName" formControlName="firstName" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name:</label>
+              <input id="lastName" formControlName="lastName" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input id="email" formControlName="email" type="email" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone:</label>
+              <input id="phone" formControlName="phone" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <input id="address" formControlName="address" class="form-control" />
+            </div>
+<!--            <div class="form-group">-->
+<!--              <label for="city">City:</label>-->
+<!--              <input id="city" formControlName="city" class="form-control" />-->
+<!--            </div>-->
+            <label for="city" class="form-label">City</label>
+            <select id="city" formControlName="city" class="form-select">
+              <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+              <!-- Add other city options here -->
+            </select>
+            <div class="form-group">
+              <label for="aboutMe">About Me:</label>
+              <textarea id="aboutMe" formControlName="aboutMe" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="birthday">Birthday:</label>
+              <input id="birthday" formControlName="birthday" type="date" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender:</label>
+              <select id="gender" formControlName="gender" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="experienceMonth">Experience Months:</label>
+              <input id="experienceMonth" formControlName="experienceMonth" type="number" class="form-control" />
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-8" *ngIf="userSettings">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Change Password</h2>
+          <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmitPassword()">
+            <div class="form-group">
+              <label for="currentPassword">Current Password:</label>
+              <input id="currentPassword" formControlName="currentPassword" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New Password:</label>
+              <input id="newPassword" formControlName="newPassword" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="confirmationPassword">Confirm New Password:</label>
+              <input id="confirmationPassword" formControlName="confirmationPassword" type="password" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Change Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-8" *ngIf="volunteerEvents">
+<!--      <div class="card">-->
+<!--        <div class="card-body">-->
+<!--          <h2 class="card-title">My Events</h2>-->
+<!--          <table class="table table-bordered table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th>Event Name</th>-->
+<!--              <th>Location</th>-->
+<!--              <th>City</th>-->
+<!--              <th>Start Date</th>-->
+<!--              <th>End Date</th>-->
+<!--              <th>Status</th>-->
+<!--              <th>Type</th>-->
+<!--              <th>Description</th>-->
+<!--              <th>Unapply</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let event of events">-->
+<!--              <td>{{ event.eventName }}</td>-->
+<!--              <td>{{ event.eventLocation }}</td>-->
+<!--              <td>{{ event.city }}</td>-->
+<!--              <td>{{ event.eventStartDate | date }}</td>-->
+<!--              <td>{{ event.eventEndDate | date }}</td>-->
+<!--              <td>{{ event.eventStatus }}</td>-->
+<!--              <td>{{ event.eventType }}</td>-->
+<!--              <td>{{ event.eventDescription }}</td>-->
+<!--              <td><button style="background: red" (click)="unapplyToEvent(event.eventId)"> Unapply</button></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <p-table
+        [value]="events"
+        [paginator]="true"
+        [rows]="5"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:11%">Event Name</th>
+            <th style="width:11%">Location</th>
+            <th style="width:11%">City</th>
+            <th style="width:11%">Start Date</th>
+            <th style="width:11%">End Date</th>
+            <th style="width:11%">Status</th>
+            <th style="width:11%">Type</th>
+            <th style="width:11%">Description</th>
+            <th style="width:11%">Unapply</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-event>
+          <tr>
+            <td>{{ event.eventName }}</td>
+            <td>{{ event.eventLocation }}</td>
+            <td>{{ event.city }}</td>
+            <td>{{ event.eventStartDate | date }}</td>
+            <td>{{ event.eventEndDate | date }}</td>
+            <td>{{ event.eventStatus }}</td>
+            <td>{{ event.eventType }}</td>
+            <td>{{ event.eventDescription }}</td>
+            <td><button class="btn btn-danger" (click)="unapplyToEvent(event.eventId)"> Unapply</button></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div *ngIf="ratingPageByVolunteer" class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Rate organizations after participation</h2>
+
+          <form [formGroup]="volunteerRatingForm" (ngSubmit)="rateOrganizationByVolunteer()">
+
+            <!-- Other organization details input fields -->
+
+            <div class="form-group">
+              <label for="organization">Select Organization:</label>
+              <select class="form-control" id="organization" formControlName="organization">
+                <option *ngFor="let organization of volunteersAppliedOrganizations" [value]="organization.organizationId">{{ organization.name }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="rating">Rating:</label>
+              <select class="form-control" id="organizationRating" formControlName="rating">
+                <option [value]="1">1</option>
+                <option [value]="2">2</option>
+                <option [value]="3">3</option>
+                <option [value]="4">4</option>
+                <option [value]="5">5</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="feedback">Feedback:</label>
+              <textarea class="form-control" id="organizationFeedback" formControlName="feedback"></textarea>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</div>
+
+
+
+<div class="container" *ngIf="role === 'ADMIN'">
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">Admin details</h2>
+            <!-- User Details -->
+            <div class="user-details">
+              <p>Username : {{username}} </p>
+              <p>Role : {{role}} </p>
+              <!-- Add user details here -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeAdminLayout('users')" >Users list</button></h2>
+          <!-- Volunteer Package Info -->
+          <div class="volunteer-package-info">
+            <!-- Add information about volunteer package here -->
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeAdminLayout('events')" >Events list </button></h2>
+          <!-- Settings -->
+          <div class="settings">
+            <!-- Add your settings options here -->
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeAdminLayout('organizations')" >Organizations list </button></h2>
+          <!-- My Events -->
+          <div class="my-events">
+            <!-- Add your events list here -->
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="col-md-8" *ngIf="usersList">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">All users</h2>
+          <p-table
+            [value]="loadedVolunteerList"
+            [paginator]="true"
+            [rows]="5"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            [rowsPerPageOptions]="[5, 10, 20]">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Volunteer Id</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>About Me</th>
+                <th>Ban user</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-volunteer>
+              <tr>
+                <td>{{ volunteer.volunteerId || 'Not filled' }}</td>
+                <td>{{ volunteer.user?.username }}</td>
+                <td>{{ volunteer.firstName || 'Not filled' }}</td>
+                <td>{{ volunteer.lastName || 'Not filled' }}</td>
+                <td>{{ volunteer.email || 'Not filled' }}</td>
+                <td>{{ volunteer.phone || 'Not filled' }}</td>
+                <td>{{ volunteer.city || 'Not filled' }}</td>
+                <td>{{ volunteer.birthday | date }}</td>
+                <td>{{ volunteer.gender || 'Not filled' }}</td>
+                <td>{{ volunteer.aboutMe || 'Not filled' }}</td>
+                <td> <button style="background: red"> Ban </button> </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8" *ngIf="eventsList">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">All Events</h2>
+          <p-table
+            [value]="loadedEventsList"
+            [paginator]="true"
+            [rows]="5"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            [rowsPerPageOptions]="[5, 10, 20]">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Event Name</th>
+                <th>Location</th>
+                <th>City</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Deactivate</th>
+                <th>Active status</th>
+
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-event>
+              <tr>
+                <td>{{ event.eventName }}</td>
+                <td>{{ event.eventLocation }}</td>
+                <td>{{ event.city }}</td>
+                <td>{{ event.eventStartDate | date }}</td>
+                <td>{{ event.eventEndDate | date }}</td>
+                <td>{{ event.eventStatus }}</td>
+                <td>{{ event.eventType }}</td>
+                <td>{{ event.eventDescription }}</td>
+                <td> {{ event.active }}</td>
+
+                <td>
+                  <button *ngIf="event.active" style="background: red" (click)="deactivateEvent(event.eventId)"> Deactivate</button>
+                  <button *ngIf="!event.active" (click)="activateEvent(event.eventId)"> Activate </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8" *ngIf="organizationList">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">All organizations</h2>
+          <p-table
+            [value]="loadedOrganizationList"
+            [paginator]="true"
+            [rows]="5"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            [rowsPerPageOptions]="[5, 10, 20]">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Organization ID</th>
+
+                <th>Name</th>
+                <th>Description</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Approved</th>
+
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-organization>
+              <tr>
+                <td> {{organization.organizationId}}</td>
+                <td>{{ organization.name }}</td>
+                <td>{{ organization.description }}</td>
+                <td>{{ organization.address }}</td>
+                <td>{{ organization.phone }}</td>
+                <td>{{ organization.email }}</td>
+                <td>{{ organization.city }}</td>
+                <td>{{ organization.isApproved ? 'Yes' : 'No' }}</td>
+                <td> <button style="background: red"> Approve </button> </td>
+
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+<div class="container" *ngIf="role === 'ORGANIZATION'">
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">Organization details</h2>
+            <!-- User Details -->
+            <div class="user-details">
+              <p>Username : {{username}} </p>
+              <p>Role : {{role}} </p>
+              <!-- Add user details here -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeOrganizationLayout('profile')" >Organization profile</button></h2>
+          <!-- Volunteer Package Info -->
+          <div class="volunteer-package-info">
+            <!-- Add information about volunteer package here -->
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeOrganizationLayout('creationEvent')" >Create event</button></h2>
+          <!-- Volunteer Package Info -->
+          <div class="volunteer-package-info">
+            <!-- Add information about volunteer package here -->
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeOrganizationLayout('events')" >Events list </button></h2>
+          <!-- Settings -->
+          <div class="settings">
+            <!-- Add your settings options here -->
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"> <button (click)="changeOrganizationLayout('rate')" >Rate volunteer</button></h2>
+          <!-- Volunteer Package Info -->
+          <div class="volunteer-package-info">
+            <!-- Add information about volunteer package here -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="organizationProfile" class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">My organization profile</h2>
+
+      <form [formGroup]="organizationForm" (ngSubmit)="saveOrganizationDetails()">
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea class="form-control" id="description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input type="text" class="form-control" id="address1" formControlName="address">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="text" class="form-control" id="phone1" formControlName="phone">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email1" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="bin">BIN:</label>
+          <input type="text" class="form-control" id="bin" formControlName="bin">
+        </div>
+        <div class="form-group">
+          <label for="city">City:</label>
+          <select class="form-control" id="city1" formControlName="city">
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+          </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="ratingPageByOrganization" class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Rate participated volunteers</h2>
+
+          <form [formGroup]="organizationRatingForm" (ngSubmit)="rateVolunteerByOrganization()">
+
+            <!-- Other organization details input fields -->
+
+            <div class="form-group">
+              <label for="volunteer">Select Volunteer:</label>
+              <select class="form-control" id="volunteer" formControlName="volunteer">
+                <option *ngFor="let volunteer of organizationVolunteers" [value]="volunteer.volunteerId">{{ volunteer.user?.username }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="rating">Rating:</label>
+              <select class="form-control" id="rating" formControlName="rating">
+                <option [value]="1">1</option>
+                <option [value]="2">2</option>
+                <option [value]="3">3</option>
+                <option [value]="4">4</option>
+                <option [value]="5">5</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="feedback">Feedback:</label>
+              <textarea class="form-control" id="feedback" formControlName="feedback"></textarea>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <br>
+    <div *ngIf="creationEvent" class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+
+        <form [formGroup]="eventForm" (ngSubmit)="createEventByOrganization()" class="p-4 border rounded container">
+          <h1>Create new event</h1>
+          <div class="mb-3">
+            <label for="eventName" class="form-label">Event Name</label>
+            <input type="text" id="eventName" formControlName="eventName" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="eventDescription" class="form-label">Event Description</label>
+            <textarea id="eventDescription" formControlName="eventDescription" class="form-control"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="eventLocation" class="form-label">Event Location</label>
+            <input type="text" id="eventLocation" formControlName="eventLocation" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="eventStartDate" class="form-label">Event Start Date</label>
+            <input type="date" id="eventStartDate" formControlName="eventStartDate" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="eventEndDate" class="form-label">Event End Date</label>
+            <input type="date" id="eventEndDate" formControlName="eventEndDate" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="eventType" class="form-label">Event Type</label>
+            <select id="eventType" formControlName="eventType" class="form-select">
+              <option value="SOCIAL">Social</option>
+              <option value="ECO">Eco</option>
+              <option value="MEDICAL">MEDICAL</option>
+              <option value="ONLINE">ONLINE</option>
+              <option value="ANIMAL_CARE">Animal Care</option>
+              <option value="CULTURAL">CULTURAL</option>
+              <option value="SPORTS">SPORTS</option>
+              <option value="ELDERLY_CARE">ELDERLY_CARE</option>
+              <option value="FUNDING">FUNDING</option>
+
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <select id="city2" formControlName="city" class="form-select">
+              <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+              <!-- Add other city options here -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="link" class="form-label">Link to event</label>
+            <input type="text" id="link" formControlName="link" class="form-control">
+          </div>
+          <br>
+          <!-- Add organization field if needed -->
+          <button type="submit" class="btn btn-primary">Create Event</button>
+        </form>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-8" *ngIf="organizationEvents">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Organization Events</h2>
+
+          <p-table
+            [value]="organizationEventsList"
+            [paginator]="true"
+            [rows]="5"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            [rowsPerPageOptions]="[5, 10, 20]">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Event Name</th>
+                <th>Location</th>
+                <th>City</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Deactivate</th>
+                <th>Active status</th>
+                <th>Volunteers</th>
+
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-event>
+              <tr>
+                <td>{{ event.eventName }}</td>
+                <td>{{ event.eventLocation }}</td>
+                <td>{{ event.city }}</td>
+                <td>{{ event.eventStartDate | date }}</td>
+                <td>{{ event.eventEndDate | date }}</td>
+                <td>{{ event.eventStatus }}</td>
+                <td>{{ event.eventType }}</td>
+                <td>{{ event.eventDescription }}</td>
+                <td>{{ event.active }}</td>
+                <td>
+                  <button *ngIf="event.active" class="btn btn-outline-primary" style="background: red" (click)="deactivateEvent(event.eventId)">Deactivate</button>
+                  <button *ngIf="!event.active" class="btn btn-success" (click)="activateEvent(event.eventId)">Activate</button>
+                </td>
+                <td>
+                  <button class="btn btn-info" style="background: #2196F3" (click)="showVolunteersList(event.eventId)">Info</button>
+                </td>
+
+              </tr>
+            </ng-template>
+          </p-table>
+
+
+<!--          <table class="table table-bordered table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th>Event Name</th>-->
+<!--              <th>Location</th>-->
+<!--              <th>City</th>-->
+<!--              <th>Start Date</th>-->
+<!--              <th>End Date</th>-->
+<!--              <th>Status</th>-->
+<!--              <th>Type</th>-->
+<!--              <th>Description</th>-->
+<!--              <th>Deactivate</th>-->
+<!--              <th>Active status</th>-->
+<!--              <th>Volunteers</th>-->
+<!--            </tr>-->
+
+
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let event of organizationEventsList">-->
+<!--              <td>{{ event.eventName }}</td>-->
+<!--              <td>{{ event.eventLocation }}</td>-->
+<!--              <td>{{ event.city }}</td>-->
+<!--              <td>{{ event.eventStartDate | date }}</td>-->
+<!--              <td>{{ event.eventEndDate | date }}</td>-->
+<!--              <td>{{ event.eventStatus }}</td>-->
+<!--              <td>{{ event.eventType }}</td>-->
+<!--              <td>{{ event.eventDescription }}</td>-->
+<!--              <td>{{ event.active }}</td>-->
+<!--              <td>-->
+<!--                <button *ngIf="event.active" class="btn btn-outline-primary" style="background: red" (click)="deactivateEvent(event.eventId)">Deactivate</button>-->
+<!--                <button *ngIf="!event.active" class="btn btn-success" (click)="activateEvent(event.eventId)">Activate</button>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <button class="btn btn-info" style="background: #2196F3" (click)="showVolunteersList(event.eventId)">Info</button>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+
+          <!-- Volunteers Table -->
+          <div *ngIf="showVolunteers">
+            <div class="row">
+              <div class="col-md-6">
+                <h2 class="card-title">All Volunteer for chosen event</h2>
+              </div>
+              <div class="col-md-6 text-right">
+                <button class="btn btn-secondary" (click)="showVolunteers = false">Show less</button>
+              </div>
+            </div>
+          <div *ngIf="organizationEventsVolunteersList.length > 1">
+            <p-table
+              [value]="organizationEventsVolunteersList"
+              [paginator]="true"
+              [rows]="5"
+              [tableStyle]="{ 'min-width': '50rem' }"
+              [rowsPerPageOptions]="[5, 10, 20]">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Volunteer Id</th>
+                  <th>Username</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>City</th>
+                  <th>Birthday</th>
+                  <th>Gender</th>
+                  <th>About Me</th>
+                  <th>Delete</th>
+
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-volunteer>
+                <tr>
+                  <td>{{ volunteer.volunteerId }}</td>
+                  <td>{{ volunteer.user?.username }}</td>
+                  <td>{{ volunteer.firstName || 'Not filled' }}</td>
+                  <td>{{ volunteer.lastName || 'Not filled' }}</td>
+                  <td>{{ volunteer.email || 'Not filled' }}</td>
+                  <td>{{ volunteer.phone || 'Not filled' }}</td>
+                  <td>{{ volunteer.city || 'Not filled' }}</td>
+                  <td>{{ volunteer.birthday | date }}</td>
+                  <td>{{ volunteer.gender || 'Not filled' }}</td>
+                  <td>{{ volunteer.aboutMe || 'Not filled' }}</td>
+                  <button style="background: red" class="btn btn-danger" (click)="unapplyFromEvent(chosenEventId, volunteer.volunteerId)">Delete</button>
+
+
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+
+          <div *ngIf="organizationEventsVolunteersList.length == 0">
+            <h1>Not found </h1>
+          </div>
+<!--          <table class="table table-bordered table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th>Volunteer Id</th>-->
+<!--              <th>Username</th>-->
+<!--              <th>First Name</th>-->
+<!--              <th>Last Name</th>-->
+<!--              <th>Email</th>-->
+<!--              <th>Phone</th>-->
+<!--              <th>City</th>-->
+<!--              <th>Birthday</th>-->
+<!--              <th>Gender</th>-->
+<!--              <th>About Me</th>-->
+<!--              <th>Delete</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let volunteer of organizationEventsVolunteersList">-->
+<!--              <td>{{ volunteer.volunteerId }}</td>-->
+<!--              <td>{{ volunteer.user?.username }}</td>-->
+<!--              <td>{{ volunteer.firstName || 'Not filled' }}</td>-->
+<!--              <td>{{ volunteer.lastName || 'Not filled' }}</td>-->
+<!--              <td>{{ volunteer.email || 'Not filled' }}</td>-->
+<!--              <td>{{ volunteer.phone || 'Not filled' }}</td>-->
+<!--              <td>{{ volunteer.city || 'Not filled' }}</td>-->
+<!--              <td>{{ volunteer.birthday | date }}</td>-->
+<!--              <td>{{ volunteer.gender || 'Not filled' }}</td>-->
+<!--              <td>{{ volunteer.aboutMe || 'Not filled' }}</td>-->
+<!--              <button style="background: red" class="btn btn-danger" (click)="unapplyFromEvent(chosenEventId, volunteer.volunteerId)">Delete</button>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

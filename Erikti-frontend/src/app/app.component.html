@@ -1,0 +1,96 @@
+
+<main>
+  <header class="p-3 text-bg-bright">
+  <!-- <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <i class="fa-solid fa-handshake-angle"></i>
+      </a>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a class="nav-link px-2 text-secondary" [routerLink]="['/events']">Erikti</a></li>
+        <li><a class="nav-link px-2 text-white" [routerLink]="['/organizations']">Organizations</a></li>
+        <li><a class="nav-link px-2 text-white" [routerLink]="['/events']">Events</a></li>
+        <li><a class="nav-link px-2 text-white" [routerLink]="['/contacts']">Contact us</a></li>
+        <li><a class="nav-link px-2 text-white" [routerLink]="['/about']">About us</a></li>
+        <li><a class="nav-link px-2 text-white" [routerLink]="['/create-event']">Add your event</a></li>
+      </ul>
+      <div class="text-end">
+        <button *ngIf="!checkToken()" [routerLink]="['/user']" class="user-details-container justify-content-center">
+          <p>{{ username }}</p>
+          <p>{{ role }}</p>
+        </button>
+        <button *ngIf="checkToken()" type="button" class="btn btn-outline-light me-2" [routerLink]="['/login']">Login</button>
+        <button *ngIf="checkToken()" type="button" class="btn btn-warning" [routerLink]="['/register']">Sign-up</button>
+      </div>
+    </div>
+  </div> -->
+
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between row logo-user-row">
+        <div class="col-lg-6 d-flex align-items-center">
+          <a class="nav-link px-2 text-secondary logo" routerLink="home"><img src="../assets/images/Erikti.svg" alt=""></a>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-end align-items-center">
+          <button *ngIf="!checkToken()" routerLink="user" class="user-details-container d-flex flex-column justify-content-center">
+            <p>Username: {{ username }}</p>
+            <p>Role: {{ role }}</p>
+          </button>
+          <button *ngIf="!checkToken()" class="logout-btn" (click)="logoutHandler()">
+            <img style="height: 35px; width: 35px" src="../assets/icons/logout.png" alt="Logout">
+          </button>
+          <button *ngIf="checkToken()" type="button" class="btn btn-outline-black me-2 login-btn" routerLink="login">Login</button>
+          <button *ngIf="checkToken()" type="button" class="btn btn register-btn" routerLink="register">Sign-up</button>
+        </div>
+      </div>
+      <div class="menu-nav row">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-2 text-black" routerLink="organizations">Organizations</a></li>
+          <li><a class="nav-link px-2 text-black" routerLink="events">Events</a></li>
+          <li><a href="#" class="nav-link px-2 text-black" routerLink="contacts">Contact us</a></li>
+          <li><a href="#" class="nav-link px-2 text-black" routerLink="about">About us</a></li>
+          <li><a href="#" class="nav-link px-2 text-black help-button" routerLink="create-event">Need help?</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+</header>
+
+</main>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<p-toast/>
+<router-outlet />
+
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>About</h6>
+        <p class="text-justify"> This project reflects our dedication and creativity, and we are eager to demonstrate our hard work.
+          Through this application, we aim to make a positive impact and showcase the full extent of what we've learned.
+          Join us as we embark on this exciting new chapter, bringing our vision to life and contributing to the community.
+        </p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="">Home</a></li>
+          <li><a href="">Organizations</a></li>
+          <li><a href="">Events</a></li>
+          <li><a href="">Contact us</a></li>
+          <li><a href="">About us</a></li>
+          <li><a href="">Heed help?</a></li>
+          <li><a href=""></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+</footer>
+
+
+
+

@@ -1,0 +1,88 @@
+<!--<div class="container-fluid card login-container">-->
+<!--  <h3 class="text-center">Login</h3>-->
+<!--  <hr>-->
+
+<!--  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">-->
+<!--    <p *ngFor="let msg of errorMsg">{{ msg }}</p>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="username" class="form-label">Username</label>-->
+<!--    <input [(ngModel)]="authRequest.username" type="text" class="form-control" id="username" placeholder="whoAsks">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="password" class="form-label">Password</label>-->
+<!--    <input [(ngModel)]="authRequest.password" type="password" class="form-control" id="password" placeholder="Password">-->
+<!--  </div>-->
+
+<!--  <div class="d-flex justify-content-between mb-3">-->
+<!--    <button (click)="login()" type="button" class="btn btn-primary">-->
+<!--      <em class="fas fa-sign-in-alt">&nbsp; Sign in</em>-->
+<!--    </button>-->
+
+<!--    <div>-->
+<!--      Don't have an account?&nbsp;-->
+<!--      <button (click)="register()" type="button" class="btn btn-link">Register</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<main class="form-signin w-100 m-auto card login-container">-->
+<!--  <form>-->
+<!--    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>-->
+
+<!--    <div class="form-floating">-->
+<!--      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">-->
+<!--      <label for="floatingInput">Email address</label>-->
+<!--    </div>-->
+<!--    <div class="form-floating">-->
+<!--      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">-->
+<!--      <label for="floatingPassword">Password</label>-->
+<!--    </div>-->
+
+<!--    <div class="form-check text-start my-3">-->
+<!--      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">-->
+<!--      <label class="form-check-label" for="flexCheckDefault">-->
+<!--        Remember me-->
+<!--      </label>-->
+<!--    </div>-->
+<!--    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>-->
+<!--    <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>-->
+<!--  </form>-->
+<!--</main>-->
+<!--<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>-->
+
+<div class="container">
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+<!--    <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">-->
+<!--      <p *ngFor="let msg of errorMsg">{{ msg }}</p>-->
+<!--    </div>-->
+    <div class="text-center mb-5">
+      <!-- <img src="assets/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3"> -->
+      <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+      <span  class="text-600 font-medium line-height-3">Don't have an account?</span>
+      <a (click)="register()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+    </div>
+
+    <div>
+      <label for="email1" class="block text-900 font-medium mb-2">Username</label>
+      <input [(ngModel)]="authRequest.username" id="email1" type="text" placeholder="Username" pInputText class="w-full mb-3">
+
+      <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+      <input [(ngModel)]="authRequest.password" id="password1" type="password" placeholder="Password" pInputText class="w-full mb-3">
+
+<!--      <div class="flex align-items-center justify-content-between mb-6">-->
+        <!-- <div class="flex align-items-center"> -->
+        <!-- <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox> -->
+        <!-- <label for="rememberme1" class="text-900">Remember me</label> -->
+        <!-- </div> -->
+<!--        <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>-->
+<!--      </div>-->
+
+      <button (click)="login()" pButton pRipple label="Sign In" icon="pi pi-user" class="w-full"></button>
+    </div>
+  </div>
+</div>
+

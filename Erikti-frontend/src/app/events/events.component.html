@@ -1,0 +1,185 @@
+<br>
+<div class="container rounded p-4 shadow-lg" style="background-color: #f8f9fa;">
+  <div class="row justify-content-center align-items-center" style="height: 200px;">
+    <div class="col text-center">
+      <h1 class="text-primary display-3">Events</h1>
+    </div>
+  </div>
+</div>
+
+
+<br>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="container">
+        <label for="region">Region:</label>
+        <select id="region" [(ngModel)]="selectedCity" name="selectedCity" class="custom-select" (change)="handleChange('trigger')">
+          <option value="option1" [value]="city" *ngFor="let city of cities" [attr.selected]="selectedCity"> {{ city }}</option>
+        </select>
+
+        <!-- Custom Checkbox -->
+        <label *ngFor="let eventType of eventTypes" class="custom-checkbox">
+          <input type="checkbox" (change)="handleChange(eventType)">
+          <span class="checkmark"></span>
+          {{ eventType }}
+        </label>
+
+      </div>
+
+
+
+    </div>
+
+
+    <div class="col-md-6">
+
+      <div *ngIf="events && events.length">
+        <div *ngFor="let event of events | paginate: {itemsPerPage: 2, currentPage: p}"  class="card mb-3">
+          <div class="card-body">
+            <h2 class="card-title">{{ event.eventName  }}</h2>
+            <p class="card-text"><strong>Description:</strong> {{ event.eventDescription }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ event.eventLocation }}</p>
+            <p class="card-text"><strong>Start Date:</strong> {{ event.eventStartDate | date }}</p>
+            <p class="card-text"><strong>End Date:</strong> {{ event.eventEndDate | date }}</p>
+            <p class="card-text"><strong>Type:</strong> {{ event.eventType }}</p>
+            <p class="card-text"><strong>Status:</strong> {{ event.eventStatus }}</p>
+            <p class="card-text"><strong>City: </strong> {{ event.city }}</p>
+            <p *ngIf="event.link != null" class="card-text"><strong>Link to chat: </strong> <a href="{{event.link}}">Click me</a> </p>
+
+            <button *ngIf="!checkIfAlreadyRegisteredOnEvent(event.eventId) && event.eventStatus == 'OPEN' && isVolunteer()" class="btn btn-primary" (click)="applyToEvent( event.eventId )"> Apply </button>
+            <button *ngIf="checkIfAlreadyRegisteredOnEvent(event.eventId) && event.eventStatus == 'OPEN' && isVolunteer()" class="btn btn-danger" (click)="unapplyToEvent( event.eventId )"> Unapply </button>
+
+          </div>
+        </div>
+        <div class="flex justify-content-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        </div>
+      </div>
+<!--      <p-paginator-->
+<!--              (onPageChange)="onPageChange($event)"-->
+<!--              [first]="first"-->
+<!--              [rows]="rows"-->
+<!--      [totalRecords]="120"-->
+<!--      [rowsPerPageOptions]="[10, 20, 30]" />-->
+
+      <div *ngIf="!events || events.length === 0" class="alert alert-info" role="alert">
+        No events found.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<div class="container">-->
+<!--<p-splitter-->
+<!--  [panelSizes]="[25, 75]"-->
+
+<!--  [style]="{ }" styleClass="mb-5">-->
+<!--  <ng-template pTemplate>-->
+<!--    <div class="col flex align-items-center justify-content-center">-->
+<!--&lt;!&ndash;      <div class="col-md-6">&ndash;&gt;-->
+<!--        <div class="container">-->
+<!--          <label for="region">Region:</label>-->
+<!--          <select id="region" [(ngModel)]="selectedCity" name="selectedCity" class="custom-select" (change)="handleChange('trigger')">-->
+<!--            <option value="option1" [value]="city" *ngFor="let city of cities" [attr.selected]="selectedCity"> {{ city }}</option>-->
+<!--          </select>-->
+
+<!--          &lt;!&ndash; Custom Checkbox &ndash;&gt;-->
+<!--          <label *ngFor="let eventType of eventTypes" class="custom-checkbox">-->
+<!--            <input type="checkbox" (change)="handleChange(eventType)">-->
+<!--            <span class="checkmark"></span>-->
+<!--            {{ eventType }}-->
+<!--          </label>-->
+
+<!--        </div>-->
+
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate>-->
+<!--    <div class="col flex align-items-center justify-content-center">-->
+<!--&lt;!&ndash;      <div class="col-md-6">&ndash;&gt;-->
+
+<!--        <div *ngIf="events && events.length">-->
+<!--          <div *ngFor="let event of events | paginate: {itemsPerPage: 2, currentPage: p}"  class="card mb-3">-->
+<!--            <div class="row">-->
+<!--              <br>-->
+<!--              <h2 class="card-title">Title:  {{ event.eventName  }}</h2>-->
+
+
+<!--              <div class="col-lg-6 card-body justify-content-center">-->
+<!--                <p class="card-text"><strong>Description:</strong> {{ event.eventDescription }}</p>-->
+<!--                <br>-->
+
+<!--                <p class="card-text"><strong>Location:</strong> {{ event.eventLocation }}</p>-->
+<!--                <br>-->
+<!--                <p class="card-text"><strong>Start Date:</strong> {{ event.eventStartDate | date }}</p>-->
+<!--                <br>-->
+<!--                <p class="card-text"><strong>End Date:</strong> {{ event.eventEndDate | date }}</p>-->
+
+
+
+<!--              </div>-->
+<!--              <div class="col-lg-6 card-body justify-content-center" style="height: 300px">-->
+<!--                <p class="card-text"><strong>Type:</strong> {{ event.eventType }}</p>-->
+<!--                <br>-->
+
+<!--                <p class="card-text"><strong>Status:</strong> {{ event.eventStatus }}</p>-->
+<!--                <br>-->
+
+<!--                <p class="card-text"><strong>City: </strong> {{ event.city }}</p>-->
+<!--                <br>-->
+
+<!--                <p *ngIf="event.link != null" class="card-text"><strong>Link to chat: </strong> <a href="{{event.link}}">Click me</a> </p>-->
+<!--                <br>-->
+
+<!--                <button *ngIf="!checkIfAlreadyRegisteredOnEvent(event.eventId) && event.eventStatus == 'OPEN' && isVolunteer()" class="btn btn-primary" (click)="applyToEvent( event.eventId )"> Apply </button>-->
+<!--                <button *ngIf="checkIfAlreadyRegisteredOnEvent(event.eventId) && event.eventStatus == 'OPEN' && isVolunteer()" class="btn btn-danger" (click)="unapplyToEvent( event.eventId )"> Unapply </button>-->
+<!--              </div>-->
+
+<!--            </div>-->
+<!--&lt;!&ndash;            <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;              <h2 class="card-title">{{ event.eventName  }}</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>Description:</strong> {{ event.eventDescription }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>Location:</strong> {{ event.eventLocation }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>Start Date:</strong> {{ event.eventStartDate | date }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>End Date:</strong> {{ event.eventEndDate | date }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>Type:</strong> {{ event.eventType }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>Status:</strong> {{ event.eventStatus }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="card-text"><strong>City: </strong> {{ event.city }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p *ngIf="event.link != null" class="card-text"><strong>Link to chat: </strong> <a href="{{event.link}}">Click me</a> </p>&ndash;&gt;-->
+
+<!--&lt;!&ndash;              <button *ngIf="!checkIfAlreadyRegisteredOnEvent(event.eventId) && event.eventStatus == 'OPEN' && isVolunteer()" class="btn btn-primary" (click)="applyToEvent( event.eventId )"> Apply </button>&ndash;&gt;-->
+<!--&lt;!&ndash;              <button *ngIf="checkIfAlreadyRegisteredOnEvent(event.eventId) && event.eventStatus == 'OPEN' && isVolunteer()" class="btn btn-danger" (click)="unapplyToEvent( event.eventId )"> Unapply </button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="flex justify-content-center">-->
+<!--            <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;      <p-paginator&ndash;&gt;-->
+<!--        &lt;!&ndash;              (onPageChange)="onPageChange($event)"&ndash;&gt;-->
+<!--        &lt;!&ndash;              [first]="first"&ndash;&gt;-->
+<!--        &lt;!&ndash;              [rows]="rows"&ndash;&gt;-->
+<!--        &lt;!&ndash;      [totalRecords]="120"&ndash;&gt;-->
+<!--        &lt;!&ndash;      [rowsPerPageOptions]="[10, 20, 30]" />&ndash;&gt;-->
+
+<!--        <div *ngIf="!events || events.length === 0" class="alert alert-info" role="alert">-->
+<!--          No events found.-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--  </ng-template>-->
+<!--</p-splitter>-->
+
+<!--</div>-->

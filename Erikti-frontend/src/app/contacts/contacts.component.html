@@ -1,0 +1,60 @@
+<!-- contact.component.html -->
+<div class="container" style="font-family: Arial, sans-serif; max-width: 1200px; margin: 70px auto; padding: 20px;">
+  <h1 style="font-size: 36px; text-align: center;">Contacts</h1>
+  <div class="team" style="display: flex; justify-content: space-around; margin-top: 20px;">
+    <div class="team-member" style="text-align: center; flex: 1; margin: 10px;">
+      <img src="https://media.licdn.com/dms/image/D4D03AQGr1SuFZGiT3w/profile-displayphoto-shrink_200_200/0/1685078228518?e=1723680000&v=beta&t=v7avHaf7GatZiBDYVld6vgLHSMffDilmajMiGS60gp0" alt="Aisultan Zhaksytayev" style="border-radius: 50%; width: 150px; height: 150px;">
+      <h3 style="font-size: 24px; margin-top: 10px;">Aisultan Zhaksytayev</h3>
+      <div class="contact-links" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <a href="mailto:zhaksytayev@gmail.com">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width: 30px; height: 30px;">
+        </a>
+        <a href="https://t.me/zhaksytayev" target="_blank">
+          <img src="https://img.icons8.com/fluency/48/000000/telegram-app.png" alt="Telegram" style="width: 30px; height: 30px;">
+        </a>
+        <a href="https://www.linkedin.com/in/aisultan-zhaksytayev-925017241/" target="_blank">
+          <img src="https://img.icons8.com/fluency/48/000000/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;">
+        </a>
+      </div>
+    </div>
+    <div class="team-member" style="text-align: center; flex: 1; margin: 10px;">
+      <img src="https://media.licdn.com/dms/image/D4D03AQEIWYpmRMc_iw/profile-displayphoto-shrink_200_200/0/1717360520773?e=1723680000&v=beta&t=aaLKqEW_lh7RPE4XBlfUnr0mzVzudwXlqOTbR5fMGNs" alt="Erasyl Serikov" style="border-radius: 50%; width: 150px; height: 150px;">
+      <h3 style="font-size: 24px; margin-top: 10px;">Erasyl Serikov</h3>
+      <div class="contact-links" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <a href="mailto:serikov0801@gmail.com">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width: 30px; height: 30px;">
+        </a>
+        <a href="https://t.me/syerasyl" target="_blank">
+          <img src="https://img.icons8.com/fluency/48/000000/telegram-app.png" alt="Telegram" style="width: 30px; height: 30px;">
+        </a>
+        <a href="https://www.linkedin.com/in/syerasyl/" target="_blank">
+          <img src="https://img.icons8.com/fluency/48/000000/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h1>Contact Us</h1>
+  <div class="contact-form">
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" [(ngModel)]="message" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="!contactForm.form.valid">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

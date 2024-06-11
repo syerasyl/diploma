@@ -1,0 +1,467 @@
+/* Style for the button */
+.user-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0; /* Light grey background */
+  border: none; /* Remove default button border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+  text-align: center;
+}
+
+/* Change background color on hover */
+.user-details-container:hover {
+  background-color: #e0e0e0; /* Slightly darker grey on hover */
+}
+
+/* Style for the username paragraph */
+.username {
+  font-weight: bold; /* Bold text */
+  font-size: 1.2em; /* Slightly larger font size */
+  margin: 0; /* Remove default margin */
+  color: #333; /* Dark text color */
+}
+
+/* Style for the role paragraph */
+.role {
+  font-weight: normal; /* Normal text weight */
+  font-size: 1em; /* Default font size */
+  margin: 0; /* Remove default margin */
+  color: #666; /* Grey text color */
+}
+
+/* Additional styles for the button when focused */
+.user-details-container:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(100, 100, 100, 0.5); /* Custom focus outline */
+}
+
+
+.logout-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+:host {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.login-btn {
+  border: solid 2px #98BE00;
+  border-radius: 10px;
+  color: black;
+}
+.register-btn {
+  border: solid 2px #98BE00;
+  color: white;
+  background: #98BE00;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.menu-nav {
+  list-style-type: none;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 10px 0px 10px 0px;
+
+  display: block;
+  color: rgb(19, 19, 19);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.login-btn:hover {
+  background: #98BE00;
+  border: solid 0.1px #98BE00;
+  transition:linear 0.5s;
+  color: white;
+}
+.register-btn:hover {
+  background: #98BE00;
+  border: solid 0.1px #98BE00;
+  transition:linear 0.5s;
+  color: white;
+}
+
+.help-button {
+  border: 2px solid #98BE00;
+  border-radius: 10px;
+}
+
+
+.slider{
+  width: 1300px;
+  max-width: 100vw;
+  height: 600px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  pointer-events: none;
+  margin-top: 50px;
+
+}
+.slider .list{
+  position: absolute;
+  width: max-content;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  transition: 1.5s;
+  /* margin: 50px 50px 50px 50px; */
+}
+.slider .list img{
+  width: 1300px;
+  max-width: 100vw;
+  height: 100%;
+  object-fit: cover;
+}
+.slider .buttons{
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: all;
+}
+.slider .buttons button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(179, 220, 29, 0.333);
+  color: #fff;
+  border: none;
+  font-family: monospace;
+  font-weight: bold;
+}
+.slider .dots{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: #fff;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.slider .dots li{
+  list-style: none;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+.slider .dots li.active{
+  width: 30px;
+}
+@media screen and (max-width: 768px){
+  .slider{
+    height: 400px;
+  }
+}
+
+
+
+
+.column {
+  margin-top: 50px;
+  padding: 10px;
+  pointer-events: none;
+  margin-bottom: 50px;
+}
+.column img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+
+
+.body-cvet {
+  align-items: center;
+  /* background: #fff;  */
+  display: flex;
+  /* height: 100vh; */
+  justify-content: center;
+  pointer-events: none;
+}
+
+.slider-cvet {
+  background: white;
+  height: 250px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 1300px;
+}
+
+.slider-cvet::before, .slider-cvet::after {
+  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 100px;
+  z-index: 2;
+}
+
+.slider-cvet::after {
+  right: 0;
+  top: 0;
+  -webkit-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
+}
+
+.slider-cvet::before {
+  left: 0;
+  top: 0;
+}
+
+.slider-cvet .slide-track {
+  animation: scroll 80s linear infinite;
+  display: flex;
+  width: calc(250px * 18);
+
+}
+
+.slider-cvet .slide-track:hover {
+  animation-play-state: paused;
+}
+
+.slider-cvet .cvet {
+  height: 250px;
+  width: 250px;
+}
+
+
+/* .cvet:nth-child(1), .cvet:nth-child(10) {
+    background-color: yellow;
+}
+
+.cvet:nth-child(2), .cvet:nth-child(11) {
+    background-color: coral;
+}
+
+.cvet:nth-child(3), .cvet:nth-child(12) {
+    background-color: blue;
+}
+
+.cvet:nth-child(4), .cvet:nth-child(13) {
+    background-color: red;
+}
+
+.cvet:nth-child(5), .slide:nth-child(14) {
+    background-color: orange;
+}
+
+.cvet:nth-child(6), .slide:nth-child(15) {
+    background-color: purple;
+}
+
+.cvet:nth-child(7), .slide:nth-child(16) {
+    background-color: pink;
+}
+
+.cvet:nth-child(8), .slide:nth-child(17) {
+    background-color: navy;
+}
+
+.cvet:nth-child(9), .slide:nth-child(18) {
+    background-color: lime;
+} */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-150px * 7));
+  }
+}
+
+
+
+
+.site-footer
+{
+  background-color:#F5F5F7;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#0e0e0e;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}

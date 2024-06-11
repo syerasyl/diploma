@@ -1,0 +1,101 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="organization-info card p-3 mb-4 shadow-sm">
+        <h2 class="card-title">Organization Information</h2>
+        <p><strong>Name:</strong> {{ organization.name }}</p>
+        <p><strong>Email:</strong> {{ organization.email }}</p>
+        <p><strong>Phone:</strong> {{ organization.phone }}</p>
+        <p><strong>Address:</strong> {{ organization.address }}</p>
+        <p><strong>BIN:</strong> {{ organization.bin }}</p>
+        <p><strong>City:</strong> {{ organization.city }}</p>
+        <p><strong>Description:</strong> {{ organization.description }}</p>
+        <p><strong>Rating:</strong> {{ organization.rating }} ({{ organization.numberOfRates }} rates)</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="events-info">
+        <h2>Events</h2>
+<!--        <table class="table table-striped">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th>Event Name</th>-->
+<!--            <th>Description</th>-->
+<!--            <th>Location</th>-->
+<!--            <th>Start Date</th>-->
+<!--            <th>End Date</th>-->
+<!--            <th>Type</th>-->
+<!--            <th>Status</th>-->
+<!--            <th>City</th>-->
+<!--            <th>Link</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let event of events">-->
+<!--            <td>{{ event.eventName }}</td>-->
+<!--            <td>{{ event.eventDescription }}</td>-->
+<!--            <td>{{ event.eventLocation }}</td>-->
+<!--            <td>{{ event.eventStartDate | date }}</td>-->
+<!--            <td>{{ event.eventEndDate | date }}</td>-->
+<!--            <td>{{ event.eventType }}</td>-->
+<!--            <td>{{ event.eventStatus }}</td>-->
+<!--            <td>{{ event.city }}</td>-->
+<!--            <td><a *ngIf="event.link" href="{{ event.link }}">Click me</a></td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+
+
+        <p-table
+          [value]="events"
+          [paginator]="true"
+          [rows]="5"
+          [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[10, 25, 50]"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+<!--              <th style="width:25%">Name</th>-->
+<!--              <th style="width:25%">Country</th>-->
+<!--              <th style="width:25%">Company</th>-->
+<!--              <th style="width:25%">Representative</th>-->
+
+              <th>Event Name</th>
+              <th>Description</th>
+              <th>Location</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>City</th>
+              <th>Link</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-event>
+            <tr>
+              <td>{{ event.eventName }}</td>
+              <td>{{ event.eventDescription }}</td>
+              <td>{{ event.eventLocation }}</td>
+              <td>{{ event.eventStartDate | date }}</td>
+              <td>{{ event.eventEndDate | date }}</td>
+              <td>{{ event.eventType }}</td>
+              <td>{{ event.eventStatus }}</td>
+              <td>{{ event.city }}</td>
+              <td><a *ngIf="event.link" href="{{ event.link }}">Click me</a></td>
+            </tr>
+
+          </ng-template>
+          <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-table>
+
+      </div>
+    </div>
+  </div>
+</div>

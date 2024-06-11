@@ -1,0 +1,51 @@
+<br>
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="p-4 border rounded container">
+  <h1>Create new event without organization</h1>
+  <div class="mb-3">
+    <label for="eventName" class="form-label">Event Name</label>
+    <input type="text" id="eventName" formControlName="eventName" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="eventDescription" class="form-label">Event Description</label>
+    <textarea id="eventDescription" formControlName="eventDescription" class="form-control"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="eventLocation" class="form-label">Event Location</label>
+    <input type="text" id="eventLocation" formControlName="eventLocation" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="eventStartDate" class="form-label">Event Start Date</label>
+    <input type="date" id="eventStartDate" formControlName="eventStartDate" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="eventEndDate" class="form-label">Event End Date</label>
+    <input type="date" id="eventEndDate" formControlName="eventEndDate" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="eventType" class="form-label">Event Type</label>
+    <select id="eventType" formControlName="eventType" class="form-select">
+      <option value="SOCIAL">Social</option>
+      <option value="ECO">Eco</option>
+
+      <option value="MEDICAL">MEDICAL</option>
+      <option value="ONLINE">ONLINE</option>
+      <option value="ANIMAL_CARE">Animal Care</option>
+      <option value="CULTURAL">CULTURAL</option>
+      <option value="SPORTS">SPORTS</option>
+      <option value="ELDERLY_CARE">ELDERLY_CARE</option>
+      <option value="FUNDING">FUNDING</option>    </select>
+  </div>
+  <div class="mb-3">
+    <label for="link" class="form-label">Link to event</label>
+    <input type="text" id="link" formControlName="link" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="city" class="form-label">City</label>
+    <select id="city" formControlName="city" class="form-select">
+      <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+      <!-- Add other city options here -->
+    </select>
+  </div>
+  <!-- Add organization field if needed -->
+  <button type="submit" class="btn btn-primary">Create Event</button>
+</form>

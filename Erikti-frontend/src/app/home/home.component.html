@@ -1,0 +1,65 @@
+<div class="slider">
+  <div class="list">
+    <div class="item">
+      <a routerLink="register">
+        <img src="../assets/images/Frame 16.png" alt="">
+      </a>
+    </div>
+    <div class="item">
+      <a routerLink="register">
+        <img src="../assets/images/Frame 17.png" alt="">
+      </a>
+    </div>
+    <div class="item">
+      <a routerLink="register">
+        <img src="../assets/images/Frame 18.png" alt="">
+      </a>
+    </div>
+    <div class="item">
+      <a routerLink="register">
+        <img src="../assets/images/Frame 19.png" alt="">
+      </a>
+    </div>
+    <div class="item">
+      <a routerLink="register">
+        <img src="../assets/images/Frame 9.png" alt="">
+      </a>
+    </div>
+  </div>
+  <div class="buttons">
+    <button id="prev" (click)="prevSlide()">&lt;</button>
+    <button id="next" (click)="nextSlide()">&gt;</button>
+  </div>
+  <ul class="dots">
+    <li *ngFor="let dot of dots; let i = index" [class.active]="i === activeIndex" (click)="goToSlide(i)"></li>
+  </ul>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 column">
+      <img src="../assets/images/Frame 40.svg" alt="Image 1">
+    </div>
+    <div class="col-md-6 column">
+      <img src="../assets/images/Frame 41.svg" alt="Image 2">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="body-cvet">
+  <div class="slider-cvet">
+    <div class="slide-track">
+      <div class="cvet"><img src="../assets/images/v1.png" alt=""></div>
+      <div class="cvet"><img src="../assets/images/v2.png" alt=""></div>
+      <div class="cvet"><img src="../assets/images/v3.png" alt=""></div>
+      <div class="cvet"> <img src="../assets/images/v4.png" alt=""></div>
+      <div class="cvet"><img src="../assets/images/v5.png" alt=""></div>
+      <div class="cvet"><img src="../assets/images/v6.png" alt=""></div>
+      <div class="cvet"><img src="../assets/images/v7.png" alt="">></div>
+    </div>
+  </div>
+
+</div>
